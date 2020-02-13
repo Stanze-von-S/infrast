@@ -1,0 +1,23 @@
+{
+  "name": "infrast",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Stanze-von-S/infrast.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Stanze-von-S/infrast/issues"
+  },
+  "homepage": "https://github.com/Stanze-von-S/infrast#readme",
+  "devDependencies": {
+    "webpack": "^4.41.6"
+  }
+}
