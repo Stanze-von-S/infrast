@@ -18,7 +18,38 @@ module.exports = {
                 {
             test: /\.css$/, // применять это правило только к CSS-файлам
             use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'] // к этим файлам нужно применить пакеты, которые мы уже установили
+                },
+                {
+            test: /\.(png|jpe?g|gif|svg|ico)$/i,
+            use: [
+                {
+                    loader: 'file-loader',
+                    options: {
+                        name: './images/[name].[ext]',
+                        esModule: false
+                    }
+                },
+                {
+                    loader: 'image-webpack-loader',
+                    options: {
+                        mozjpeg: {
+                            progressive: true,
+                            quality: 65,
+                        },
+                        optipng: {
+                            enabled: false,
+                        },
+                        gifsicle: {
+                            interlaced: false,
+                        },
+                        pngquant: {
+                            quality: [0.65, 0.90],
+                            speed: 4,
+                        }
+                    }
                 }
+                    ]
+                },
             ]
         },
     plugins: [ 
