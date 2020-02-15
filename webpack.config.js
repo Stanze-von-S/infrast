@@ -19,7 +19,7 @@ module.exports = {
             
                 },
                 {
-            test: /\.css$/, // применять это правило только к CSS-файлам
+            test: /\.css$/i, // применять это правило только к CSS-файлам
             use: [(isDev ? 'style-loader' : MiniCssExtractPlugin.loader),
                 'css-loader',
                 'postcss-loader'] // к этим файлам нужно применить пакеты, которые мы уже установили
@@ -62,7 +62,7 @@ module.exports = {
             ]
         },
     plugins: [ 
-        new MiniCssExtractPlugin({filename: './pages.[contenthash].css'}),
+        new MiniCssExtractPlugin({filename: 'style.[contenthash].css'}),
         new OptimizeCssAssetsPlugin({
             assetNameRegExp: /\.css$/g,
             cssProcessor: require('cssnano'),
