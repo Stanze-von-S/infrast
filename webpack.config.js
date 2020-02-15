@@ -2,6 +2,8 @@ const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin"); // Подключили к проекту плагин
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const isDev = process.env.NODE_ENV === 'development';
 new webpack.DefinePlugin({
     'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
 }) 
@@ -20,7 +22,9 @@ module.exports = {
                 },
                 {
             test: /\.css$/, // применять это правило только к CSS-файлам
-            use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'] // к этим файлам нужно применить пакеты, которые мы уже установили
+            use: [(isDev ? 'style-loader' : MiniCssExtractPlugin.loader),
+                'css-loader',
+                'postcss-loader'] // к этим файлам нужно применить пакеты, которые мы уже установили
                 },
                 {
             test: /\.(png|jpe?g|gif|svg|ico)$/i,
@@ -57,6 +61,14 @@ module.exports = {
         },
     plugins: [ 
         new MiniCssExtractPlugin({filename: 'style.[contenthash].css'}),
+        new OptimizeCssAssetsPlugin({
+            assetNameRegExp: /\.css$/g,
+            cssProcessor: require('cssnano'),
+            cssProcessorPluginOptions: {
+                    preset: ['default'],
+            },
+            canPrint: true
+          }),
         new HtmlWebpackPlugin({
             // Означает, что:
             inject: false, // стили НЕ нужно прописывать внутри тегов
