@@ -9,7 +9,7 @@ module.exports = {
     entry: {main: './src/code.js'},
     output:{
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].[chundhash].js'
+        filename: '[name].[chunkhash].js'
     },
     module: {
         rules: [{ // тут описываются правила
