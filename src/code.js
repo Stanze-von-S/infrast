@@ -77,6 +77,10 @@ class Api {
           });
       }
 }
+
+const validationErrorLenght = "Должно быть от 2 до 30 символов";
+const validationError = "Это обязательное поле";
+
 function validationInput(variable) {
     if ((variable.validity.tooShort) ||
       (variable.validity.tooLong)) {
