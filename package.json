@@ -1,7 +1,7 @@
 {
   "name": "infrast",
   "version": "1.0.0",
-  "description": "",
+  "description": "Landing page with photos gallery",
   "main": "src/code.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production rimraf dist && webpack --mode production",
@@ -13,7 +13,7 @@
     "url": "git+https://github.com/Stanze-von-S/infrast.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Stanze von S",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Stanze-von-S/infrast/issues"
