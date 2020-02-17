@@ -1,7 +1,8 @@
 import './pages/index.css';
 import {Api, configApi} from './js/Api';
 import CardList from './js/CardList';
-import Popup from './js/Popup';
+import PopupForm from './js/PopupForm';
+import PopupImage from './js/PopupImage';
 // import {validationInput, validationForm, getProfile} from './js/functions';
 // import {Popup} from './js/Popup';
 // import PopupForm from './js/PopupForm';
@@ -84,25 +85,7 @@ function validationInput(variable) {
 
 
 
-class PopupForm extends Popup {
-    // переменная objApi ни как не используется
-    constructor(selector, obj) {
-        super(selector);
-        this.form = this.formOpen();
-        this.form.addEventListener('submit', () => this.functionForm(event, obj));
-        
-    }
 
-    functionInput(event) {
-        validationInput(event.target);
-        validationForm(event.target);
-    }
-
-    formOpen() {
-        return this.container.querySelector(`div.popup__content form.popup__form`);;
-    }
-
-} 
 class PopupFormEdit extends PopupForm {
     constructor(selector, obj) {
         super(selector, obj);
@@ -157,16 +140,7 @@ class PopupFormPlace extends PopupForm {
     }
 }
 
-class PopupImage extends Popup{
-    constructor(selector){
-        super(selector);     
-    }
 
-    getImage(styleImage){
-    const image = this.container.querySelector('.mod');
-    image.setAttribute('src', styleImage);
-    }
-}
 
 const objectApi = new Api(configApi);
 const addFormButton = document.querySelector('.user-info__button');
