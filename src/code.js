@@ -1,16 +1,13 @@
 import './pages/index.css';
 import {Api, configApi} from './js/Api';
 import CardList from './js/CardList';
-// import {configApi, Api} from './js/Api';
-// import {Card} from './src/js/Card';
-// import CardList from './js/CardList';
+import Popup from './js/Popup';
 // import {validationInput, validationForm, getProfile} from './js/functions';
 // import {Popup} from './js/Popup';
 // import PopupForm from './js/PopupForm';
 // import PopupImage from './js/PopupImage';
 // import PopupFormPlace from './js/PopupFormPlace';
 // import PopupFormEdit from './js/PopupFormEdit';
-// import './pages/index.css';
 
 const validationErrorLenght = "Должно быть от 2 до 30 символов";
 const validationError = "Это обязательное поле";
@@ -85,26 +82,7 @@ function validationInput(variable) {
   }
   
 
-class Popup{
-    constructor(selector){
-        this.container = document.querySelector(selector);
-        this.container.addEventListener('click', () => this.functionPopup(event));
-    }
 
-    functionPopup (event){
-        if(event.target.classList.contains('popup__close')){
-            this.close();
-        }
-    }
- 
-    open(){
-        this.container.classList.add('popup_is-opened');
-    }
-
-    close(){
-        this.container.classList.remove('popup_is-opened');
-    }
-}
 
 class PopupForm extends Popup {
     // переменная objApi ни как не используется
