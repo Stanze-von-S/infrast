@@ -1,4 +1,5 @@
 import Popup from './Popup';
+import {validationInput, validationForm} from './functions';
 export default class PopupForm extends Popup {
     // переменная objApi ни как не используется
     constructor(selector, obj) {
