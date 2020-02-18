@@ -1,3 +1,5 @@
+import PopupImage from './PopupImage';
+const formImage = new PopupImage('.popup_image');
 export default class Card {
     constructor(name, link, obj) {
         this.name = name;
