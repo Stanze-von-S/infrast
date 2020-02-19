@@ -3,7 +3,7 @@ import {Api, configApi} from './js/Api';
 import CardList from './js/CardList';
 import PopupFormEdit from './js/PopupFormEdit';
 import PopupFormPlace from './js/PopupFormPlace';
-import PopupImage from './js/PopupImage';
+//import PopupImage from './js/PopupImage';
 import {getProfile} from './js/functions';
 // import {validationInput, validationForm, getProfile} from './js/functions';
 
@@ -36,7 +36,7 @@ getProfile(objectApi, profileName, profileJob, profileImage);
 // Выгружаем карточки с сервера.
 placesList.render();
 
-const formImage = new PopupImage('.popup_image');
+// const formImage = new PopupImage('.popup_image');
 
 addFormButton.addEventListener('click', function (event) {
     placePopup.open();
