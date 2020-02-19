@@ -1,6 +1,6 @@
 import PopupForm from './PopupForm';
-import {validationForm} from './functions';
-// import Api from '.'
+// import {validationForm} from './functions';
+import Api from './Api';
 export default class PopupFormEdit extends PopupForm {
     constructor(selector, obj) {
         super(selector, obj);
