@@ -1,6 +1,5 @@
 import PopupForm from './PopupForm';
 import {validationForm} from './functions';
-import Api from './Api';
 export default class PopupFormPlace extends PopupForm {
     constructor(selector, obj) {
         super(selector, obj);

@@ -1,6 +1,5 @@
 import PopupForm from './PopupForm';
-// import {validationForm} from './functions';
-import Api from './Api';
+import {validationForm} from './functions';
 export default class PopupFormEdit extends PopupForm {
     constructor(selector, obj) {
         super(selector, obj);
@@ -13,16 +12,13 @@ export default class PopupFormEdit extends PopupForm {
     }
 
     functionForm(event, obj) {
-        event.preventDefault();
         const form = event.target;
         this.userName = this.container.querySelector('.popup__input_type_user').value;
         this.jobName = this.container.querySelector('.popup__input_type_job').value;
         obj.editProfileApi(this.userName, this.jobName);
-        profileName.textContent = this.userName;
-        profileJob.textContent = this.jobName;
         form.reset();
+        obj.getProfileApi();
         validationForm(form.user);
         this.close();
     }
-
 }

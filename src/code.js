@@ -3,24 +3,7 @@ import {Api, configApi} from './js/Api';
 import CardList from './js/CardList';
 import PopupFormEdit from './js/PopupFormEdit';
 import PopupFormPlace from './js/PopupFormPlace';
-//import PopupImage from './js/PopupImage';
 import {getProfile} from './js/functions';
-// import {validationInput, validationForm, getProfile} from './js/functions';
-
-// import PopupFormPlace from './js/PopupFormPlace';
-// import PopupFormEdit from './js/PopupFormEdit';
-
-
-  
-
-
-
-
-
-
-
-
-
 
 const objectApi = new Api(configApi);
 const addFormButton = document.querySelector('.user-info__button');
