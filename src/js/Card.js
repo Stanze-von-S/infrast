@@ -1,5 +1,5 @@
 import PopupImage from './PopupImage';
-const formImage = new PopupImage('.popup_image');
+
 export default class Card {
     constructor(name, link, obj) {
         this.name = name;
@@ -21,6 +21,7 @@ export default class Card {
         }
         if (event.target.classList.contains('place-card__image')) {
             const image = this.takeImage();
+            const formImage = new PopupImage('.popup_image');
             formImage.getImage(image);
             formImage.open();
         }
