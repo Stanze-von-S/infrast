@@ -65,6 +65,29 @@ class Api {
             console.log(err.status);
           });
       }
+
+      addCardApi(Card){
+        const arrUser = [this.container.baseUrl, '/cards'];
+        const varUser = arrUser.join('');
+        return fetch(varUser, {
+          method: 'POST',
+          headers: this.container.headers,
+          body: JSON.stringify({
+            name: name,
+            about: link,
+          })
+        })
+        .then(res => {
+          if (res.ok){
+            return res.json;
+          }
+          return Promise.reject(`Error. ${res.status}`);
+        })
+          .catch((err) => {
+            console.log(err.status);
+          });
+
+      }
 }
 
 export {Api, configApi};
