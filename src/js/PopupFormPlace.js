@@ -12,7 +12,7 @@ export default class PopupFormPlace extends PopupForm {
         this.cardList = placesList;
     }
 
-    functionForm(event, obj, this.cardListt) {
+    functionForm(event, obj) {
         event.preventDefault();
         const form = event.target;
         this.cardList.addCard(obj);
