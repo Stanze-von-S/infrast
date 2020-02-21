@@ -8,12 +8,13 @@ import {getProfile} from './js/functions';
 const objectApi = new Api(configApi);
 const addFormButton = document.querySelector('.user-info__button');
 const addFormUserButton = document.querySelector('.user-info__button-edit');
-const placePopup = new PopupFormPlace('.popup_new-place', objectApi);
+const placesList = new CardList('.places-list', objectApi);
+const placePopup = new PopupFormPlace('.popup_new-place', objectApi, placesList);
 const jobPopup = new PopupFormEdit('.popup_new-form', objectApi);
 const profileName = document.querySelector('.user-info__name');
 const profileJob = document.querySelector('.user-info__job');
 const profileImage = document.querySelector('.user-info__photo');
-const placesList = new CardList('.places-list', objectApi);
+
 // Принимаем данные от сервера по профилю.
 getProfile(objectApi, profileName, profileJob, profileImage);
 // Выгружаем карточки с сервера.
