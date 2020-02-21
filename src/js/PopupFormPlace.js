@@ -1,7 +1,8 @@
 import PopupForm from './PopupForm';
 import {validationForm} from './functions';
+import CardList from './CardList';
 export default class PopupFormPlace extends PopupForm {
-    constructor(selector, obj) {
+    constructor(selector, obj, placesList) {
         super(selector, obj);
         // Надо исправить : Нельзя вызывать или создавать реализацию в конструторе класса
         // Вызывая реализацию в конструторе класса, вы заведомо делаете класс не тестируемым.
@@ -10,7 +11,7 @@ export default class PopupFormPlace extends PopupForm {
         this.form.link.addEventListener('input', () => this.functionInput(event));
     }
 
-    functionForm(event, obj) {
+    functionForm(event, obj, placesList) {
         event.preventDefault();
         const form = event.target;
         placesList.addCard(obj);
