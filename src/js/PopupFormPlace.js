@@ -9,12 +9,13 @@ export default class PopupFormPlace extends PopupForm {
         // Такие класс нельзя правильно наследовать, а при вызове класса всегда будет вызываться реализация
         this.form.name.addEventListener('input', () => this.functionInput(event));
         this.form.link.addEventListener('input', () => this.functionInput(event));
+        this.cardList = placesList;
     }
 
-    functionForm(event, obj, placesList) {
+    functionForm(event, obj, this.cardListt) {
         event.preventDefault();
         const form = event.target;
-        placesList.addCard(obj);
+        this.cardList.addCard(obj);
         form.reset();
         validationForm(form.name);
         this.close();
