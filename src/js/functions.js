@@ -70,4 +70,9 @@ function validationInput(variable) {
             })
   }
 
-  export {validationInput, validationForm, getProfile};
+  function urlConcat(url, host){
+    const arr = [url, host];
+    return arr.join('');
+  }
+
+  export {validationInput, validationForm, getProfile, urlConcat};
