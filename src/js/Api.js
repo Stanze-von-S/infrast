@@ -64,14 +64,14 @@ class Api {
           });
       }
 
-      addCardApi(Card){
+      addCardApi(card){
         const varCard = urlConcat(this.container.baseUrl, '/cards');
         return fetch(varCard, {
           method: 'POST',
-          headers: this.container.headers,
+          headers: this.container.headers,         
           body: JSON.stringify({
-            name: name,
-            about: link,
+            name: card.name,
+            about: card.link
           })
         })
         .then(res => {
