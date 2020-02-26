@@ -1,3 +1,4 @@
+import {urlConcat} from './functions';
 const configApi = {
     baseUrl: 'https://praktikum.tk/cohort4',
     headers: {
@@ -12,8 +13,7 @@ class Api {
     }
 
     fetchCardRenderApi() {
-        const arrCard = [this.container.baseUrl, '/cards'];
-        const varCard = arrCard.join('');
+        const varCard = urlConcat(this.container.baseUrl, '/cards');
         return fetch(varCard, {
             method: 'GET',
             headers: this.container.headers
@@ -34,8 +34,7 @@ class Api {
 
     getProfileApi() {
         // Мы получаем профиль
-        const arrUser = [this.container.baseUrl, '/users/me'];
-        const varUser = arrUser.join('');
+        const varUser = urlConcat(this.container.baseUrl, '/users/me');
         return fetch(varUser, {
           method: 'GET',
           headers: this.container.headers
@@ -51,8 +50,7 @@ class Api {
        
       editProfileApi(nameUser, aboutUser) {
         // Мы редактируем профиль
-        const arrUser = [this.container.baseUrl, '/users/me'];
-        const varUser = arrUser.join('');
+        const varUser = urlConcat(this.container.baseUrl, '/users/me');
         return fetch(varUser, {
           method: 'PATCH',
           headers: this.container.headers,
@@ -67,9 +65,8 @@ class Api {
       }
 
       addCardApi(Card){
-        const arrUser = [this.container.baseUrl, '/cards'];
-        const varUser = arrUser.join('');
-        return fetch(varUser, {
+        const varCard = urlConcat(this.container.baseUrl, '/cards');
+        return fetch(varCard, {
           method: 'POST',
           headers: this.container.headers,
           body: JSON.stringify({
