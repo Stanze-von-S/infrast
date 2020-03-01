@@ -22,7 +22,7 @@
           <p class="user-info__job"></p>
             
           
-          <button class="button user-info__button-edit">Edit</button>
+          <button class="user-info__edit-button">Edit</button>
         </div>
         <button class="button user-info__button">+</button>
       </div>
@@ -36,13 +36,24 @@
         <img src="<%=require('./images/close.svg')%>" alt="" class="popup__close">
         <h3 class="popup__title">Новое место</h3>
         <form class="popup__form" name="new">
-            <input type="text" name="name" class="popup__input popup__input_type_name" 
-            placeholder="Название" minlength="3" maxlength="30" required>
-            <span class="popup__error popup_name"></span>
-            <input type="text" name="link" class="popup__input popup__input_type_link-url" 
-            placeholder="Ссылка на картинку" minlength="3" maxlength="300" required>
-            <span class="popup__error popup_link"></span>
-            <button type class="button popup__button button_place">+</button>
+            <input type="text" 
+                    name="name" 
+                    class="popup__input" 
+                    id="cardName"
+                    placeholder="Название" 
+                    minlength="2" 
+                    maxlength="30" 
+                    required>
+            <span id = "error-cardName" class="popup__error" role="status" aria-live="polite"></span>
+            <input type="url" 
+                    name="link" 
+                    class="popup__input" 
+                    id="cardLink"
+                    placeholder="Ссылка на картинку" 
+                    minlength="2" 
+                    required>
+            <span id = "error-cardLink" class="popup__error" role="status" aria-live="polite"></span>
+            <button type class="button popup__button button_place" name="addButton" disabled>+</button>
         </form>
       </div>
     </div>
@@ -52,23 +63,50 @@
         <img src="<%=require('./images/close.svg')%>" alt="" class="popup__close">
         <h3 class="popup__title">Редактировать профиль</h3>
         <form class="popup__form" name="edit">
-            <input type="text" name="user" class="popup__input popup__input_type_user"
-            placeholder="Имя" minlength="3" maxlength="30" required>
-            <span class="popup__error popup_user"></span>
-            <input type="text" name="job" class="popup__input popup__input_type_job" 
-            placeholder="О себе" minlength="3" maxlength="30" required>
-            <span class="popup__error popup_job"></span>
-            <button type class="button popup__button popup__button_save button_save">Сохранить</button>
+            <input type="text" 
+                  name="userName" 
+                  class="popup__input" 
+                  id = "userName"
+                  placeholder="Имя" 
+                  minlength="2" 
+                  maxlength="30" 
+                  required>
+            <span id = "error-userName" class="popup__error" role="status" aria-live="polite"></span>
+            <input type="text" 
+                  name="userAbout" 
+                  class="popup__input" 
+                  id = "userAbout"
+                  placeholder="О себе" 
+                  minlength="2" 
+                  maxlength="30" 
+                  required>
+            <span id="error-userAbout" class="popup__error" role="status" aria-live="polite"></span>
+            <button type class="button popup__button popup__button_type_save" name="editButton">Сохранить</button>
         </form>
       </div>
     </div>
 
-    <div class="popup popup_image">
-      <div class="popup__image">
+    <div class="popup">
+      <div class="popup__content">
         <img src="<%=require('./images/close.svg')%>" alt="" class="popup__close">
-        <div class="">
-          <img alt="" class="mod">
-        </div>
+        <h3 class="popup__title">Обновить аватар</h3>
+        <form class="popup__form" name="avatar">
+          <input type="url" 
+                 id="avatarLink"
+                 name="link" 
+                 class="popup__input"
+                 placeholder="Ссылка на картинку" 
+                 required>
+          <span id="error-avatarLink" class="popup__error" role="status" aria-live="polite"></span>
+          <button class="button popup__button popup__button_type_save popup__button_disabled" name="saveButton">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup">
+      <div class="popup__picture">
+        <img src="<%=require('./images/close.svg')%>" alt="" class="popup__close">
+        <img src="" alt="" class="popup__image">
       </div>
     </div>
      

@@ -1,66 +1,73 @@
-import PopupImage from './PopupImage';
-
 export default class Card {
-    constructor(name, link, obj) {
-        this.name = name;
-        this.link = link;
-        this.api = obj;
-        // Надо исправить : Нельзя вызывать или создавать реализацию в конструторе класса
-        // Вызывая реализацию в конструторе класса, вы заведомо делаете класс не тестируемым.
-        // Такие класс нельзя правильно наследовать, а при вызове класса всегда будет вызываться реализация
-        this.element = this.create();
-        this.element.addEventListener('click', () => this.functionEvent(event));
+    constructor(api) {
+        this.api = api;        
     }
 
-    functionEvent(event) {
-        if (event.target.classList.contains('place-card__like-icon')) {
-            this.like(event);
-        }
-        if (event.target.classList.contains('place-card__delete-icon')) {
-            this.remove(event);
-        }
-        if (event.target.classList.contains('place-card__image')) {
-            const image = this.takeImage();
-            const formImage = new PopupImage('.popup_image');
-            formImage.getImage(image);
-            formImage.open();
-        }
-
-    }
-
+    // лайки
     like(event) {
-        event.target.classList.toggle('place-card__like-icon_liked');
+
+        if (event.target.matches('.place-card__like-icon') && 
+          !(event.target.matches('.place-card__like-icon_liked'))) {
+            this.api.likeCard(event.target.closest('.place-card'), 'PUT')
+            .then(res => {
+                event.target.classList.add('place-card__like-icon_liked');
+                event.target.nextElementSibling.textContent = `${res.likes.length}`;
+            })
+            .catch(error => alert(error));
+        } else if (event.target.matches('.place-card__like-icon_liked')) {
+            this.api.likeCard(event.target.closest('.place-card'), 'DELETE')
+            .then(res => {
+                event.target.classList.remove('place-card__like-icon_liked');
+                event.target.nextElementSibling.textContent = `${res.likes.length}`;
+            })
+            .catch(error => alert(error));
+        }
     }
 
+    // удаление карточек
     remove(event) {
-        event.currentTarget.remove();
+
+        this.api.deleteCard(event.target.closest('.place-card'))
+        .then(event.target.parentNode.closest('.places-list').removeChild(event.target.closest('.place-card')))
+        .catch(error => alert(error));
+
     }
 
-    create() {
-        const placeCard = document.createElement("div");
-        placeCard.classList.add("place-card");
-        placeCard.innerHTML = `
-            <div class="place-card__image">
-                <button class="place-card__delete-icon"></button>
-            </div>
-            <div class="place-card__description">
-                <h3 class="place-card__name"></h3>
-                <button class="place-card__like-icon"></button>
-            </div>`;
-        placeCard.querySelector(".place-card__name").textContent = this.name;
-        placeCard.querySelector(".place-card__image").style.backgroundImage = `url(${this.link})`;
+    // проверка активного лайка юзера
+    checkLikes(likes, id) {
 
-        return placeCard;
+        let like = likes.some( el => el._id === id );
+
+        if (like) {
+            return 'place-card__like-icon_liked';
+        }
+
     }
 
-    takeImage() {
-        const image = this.element.querySelector('.place-card__image');
-        const style = image.getAttribute('style');
-        const arr = style.split('(');
-        const arrMod = arr[1].split(')');
-        const mod = arrMod[0].split(`"`);
-        const stringArr = mod[1].toString();
-        return stringArr;
+     // проверка кнопки удаления
+     checkDeleteBox(card, id) {
+        
+        if (!(card.owner._id === id)) {
+            return 'display: none';
+        }
+
     }
+
+     //шаблон карточки
+     create(card, id) {
+        return `<div class="place-card" data-id="${card._id}">
+              <div class="place-card__image" data-src="${card.link}" style="background-image: url(${card.link})">
+                  <button class="place-card__delete-icon" style="${this.checkDeleteBox(card, id)}"></button>
+              </div>
+              <div class="place-card__description">
+                  <h3 class="place-card__name">${card.name}</h3>
+                  <div class="place-card__like-group">
+                    <button class="place-card__like-icon ${this.checkLikes(card.likes, id)}"></button>
+                    <p class="place-card__like-counter">${card.likes.length}</p>
+                  </div>
+              </div>
+          </div>`;
+
+}
 
 }

@@ -1,24 +1,30 @@
-import PopupForm from './PopupForm';
-import {validationForm} from './functions';
-export default class PopupFormEdit extends PopupForm {
-    constructor(selector, obj) {
-        super(selector, obj);
-        // нельзя такое в конструкторе делать, присваивать значения 
-        this.container.querySelector('.popup__input_type_user').value = 'Jaques Causteau';
-        this.container.querySelector('.popup__input_type_job').value = 'Sailor, Researcher';
-        this.container.querySelector('.button_save').classList.add('popup__button_active');
-        this.form.user.addEventListener('input', () => this.functionInput(event));
-        this.form.job.addEventListener('input', () => this.functionInput(event));
+import Popup from './Popup';
+export default class PopupFormEdit extends Popup {
+    constructor(options) {
+        super(options.domElement);
+
+        this.api = options.request;
+        this.form = options.domElement;
+        this.name = options.domElement.userName;
+        this.about = options.domElement.userAbout;
+        this.userInfoName = document.querySelector('.user-info__name');
+        this.userInfoJob = document.querySelector('.user-info__job');
     }
 
-    functionForm(event, obj) {
-        const form = event.target;
-        this.userName = this.container.querySelector('.popup__input_type_user').value;
-        this.jobName = this.container.querySelector('.popup__input_type_job').value;
-        obj.editProfileApi(this.userName, this.jobName);
-        form.reset();
-        obj.getProfileApi();
-        validationForm(form.user);
-        this.close();
+    listenForm() {
+        this.api.editProfileApi({ name: this.name.value, about: this.about.value })
+            .then((res) => {
+                this.fullfillForm(res.name, res.about);
+            })
+            .then(this.close())
+            .catch(error => alert(error));
+    }
+
+    fullfillForm(name, about) {
+        this.userInfoName.textContent = `${name}`;
+        this.userInfoJob.textContent = `${about}`;
+
+        this.name.setAttribute('value', `${name}`);
+        this.about.setAttribute('value', `${about}`);
     }
 }

@@ -1,24 +1,21 @@
-import Card from './Card';
+// import Card from './Card';
 export default class CardList {
-    constructor(selector, api) {
-        this.container = document.querySelector(selector);
-        this.list = [];
-        this.apiVar = api;
+    constructor(container, cardTemplate) {
+        this.container = container;
+        this.cardTemplate = cardTemplate;
     }
 
-    addCard(apiObj) {
-        const place = new Card(apiObj.name, apiObj.link, apiObj);
-        this.container.appendChild(place.element);
-        this.list.push(place);
-    }
-
-    render() {
-        this.apiVar.fetchCardRenderApi()
-            .then((res) => {
-                for (let i = 0; i < res.length; i++) {
-                    this.addCard(res[i]);
-                }
-            });
+    addCard(card, id) {
         
+        this.cardElement = this.cardTemplate.create(card, id);
+        
+        this.container.insertAdjacentHTML('beforeend', this.cardElement); 
     }
+
+    render(array, id) {
+
+        array.forEach( el => this.addCard(el, id) );
+        
+    }        
+    
 }
