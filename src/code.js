@@ -34,7 +34,7 @@ const closeNew = popupAddCard.querySelector('.popup__close');
 const closePicture = popupPicture.querySelector('.popup__close');
 const closeAvatar = popupAvatar.querySelector('.popup__close');
 
-const serverUrl = NODE_ENV === 'development' ? 'https://praktikum.tk/cohort4' : 'http://praktikum.tk/cohort4';
+const serverUrl = https://praktikum.tk/cohort4';
 
 // экземпляры классов
 const api = new Api({
