@@ -13,7 +13,6 @@ export default class PopupFormPlace extends Popup {
     listenForm() {
         this.api.addCardApi({ name: this.name.value, link: this.link.value })
             .then((res) => {
-                // console.log(res);
                 this.addCards.addCard(res, res.owner._id);
             })
             .then(this.close())

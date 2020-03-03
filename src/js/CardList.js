@@ -1,4 +1,3 @@
-// import Card from './Card';
 export default class CardList {
     constructor(container, cardTemplate) {
         this.container = container;
@@ -6,7 +5,6 @@ export default class CardList {
     }
 
     addCard(card, id) {
-        
         this.cardElement = this.cardTemplate.create(card, id);
         
         this.container.insertAdjacentHTML('beforeend', this.cardElement); 
