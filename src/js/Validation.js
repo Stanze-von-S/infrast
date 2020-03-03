@@ -24,7 +24,6 @@ export default class Validation {
         this.input = input;
         // console.log (this.input);
         this.errorElement = this.form.querySelector(`#error-${this.input.id}`);
-        // console.log(this.errorElement);
 
         if (this.input.validity.valueMissing) {
             this.setInvalid(this.messages.imptyField);

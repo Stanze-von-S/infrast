@@ -11,9 +11,3 @@
     cursor: pointer;
     outline-color: greenyellow;
   }
-  /* @media screen and (max-width: 980px) {
-    .button.user-info__button-edit  {
-      position: static;
-      /* margin-bottom: 40px; */
-    /* }
-  } */ 

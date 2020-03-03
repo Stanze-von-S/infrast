@@ -1,7 +1,7 @@
 'use strict'; 
 
 import './pages/index.css';
-import {Api} from './js/Api';
+import Api from './js/Api';
 import Card from './js/Card';
 import CardList from './js/CardList';
 import PopupFormEdit from './js/PopupFormEdit';

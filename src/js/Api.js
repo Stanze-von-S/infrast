@@ -1,13 +1,6 @@
-import {urlConcat} from './functions';
-// const configApi = {
-//     baseUrl: 'https://praktikum.tk/cohort4',
-//     headers: {
-//         authorization: 'b79170d1-fa09-48c3-8dc3-1be954624527',
-//         'Content-Type': 'application/json'
-//     }
-// };
+import urlConcat from './functions';
 
-class Api {
+export default class Api {
     constructor(options) {
         this.baseUrl = options.baseUrl;
         this.headers = options.headers;
@@ -128,22 +121,4 @@ class Api {
           });
   }
 
-  // смена аватара
-  changeAvatar(avatar) {
-      return fetch(`${this.baseUrl}/users/me/avatar`, {
-          method: 'PATCH',
-          headers: this.headers,
-          body: JSON.stringify({
-              avatar: avatar,
-          })
-      })
-          .then(res => {
-              if (res.ok) {
-                  return res.json();
-              }
-              return Promise.reject(`Что-то пошло не так... ${res.status}`);
-          });
-  }
 }
-
-export {Api};

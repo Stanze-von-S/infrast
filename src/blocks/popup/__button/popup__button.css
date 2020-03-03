@@ -1,4 +1,3 @@
-/* @import url(./_active/popup__button_active.css); */
 @import url(./_save/popup__button_save.css);
 @import url(./_disabled/popup__button_disabled.css);
 .popup__button {
