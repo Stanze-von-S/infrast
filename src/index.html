@@ -5,24 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mesto</title>
-  <link rel="stylesheet" href="./pages/index.css">
+  <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.main.css %>">
 </head>
 <body>
   <div class="root">
     <header class="header root__section">
-      <img src="./images/logo.svg" alt="mesto logo" class="logo">
+      <img src="<%=require('./images/logo.svg')%>" alt="mesto logo" class="logo">
     </header>
     <div class="profile root__section">
       <div class="user-info">
         <div class="user-info__photo"></div>
         <div class="user-info__data">
-          <h1 class="user-info__name">
-            <!-- Jaques Causteau -->
-          </h1>
-          <p class="user-info__job">
-            <!-- Sailor, Researcher -->
-          </p>
-          <button class="button user-info__button-edit">Edit</button>
+          <h1 class="user-info__name"></h1>
+            
+          
+          <p class="user-info__job"></p>
+            
+          
+          <button class="user-info__edit-button">Edit</button>
         </div>
         <button class="button user-info__button">+</button>
       </div>
@@ -33,55 +33,84 @@
 
     <div class="popup popup_new-place">
       <div class="popup__content">
-        <img src="./images/close.svg" alt="" class="popup__close">
+        <img src="<%=require('./images/close.svg')%>" alt="" class="popup__close">
         <h3 class="popup__title">Новое место</h3>
         <form class="popup__form" name="new">
-            <input type="text" name="name" class="popup__input popup__input_type_name" 
-            placeholder="Название" minlength="3" maxlength="30" required>
-            <span class="popup__error popup_name"></span>
-            <input type="text" name="link" class="popup__input popup__input_type_link-url" 
-            placeholder="Ссылка на картинку" minlength="3" maxlength="300" required>
-            <span class="popup__error popup_link"></span>
-            <button type class="button popup__button button_place">+</button>
+            <input type="text" 
+                    name="name" 
+                    class="popup__input" 
+                    id="cardName"
+                    placeholder="Название" 
+                    minlength="2" 
+                    maxlength="30" 
+                    required>
+            <span id = "error-cardName" class="popup__error" role="status" aria-live="polite"></span>
+            <input type="url" 
+                    name="link" 
+                    class="popup__input" 
+                    id="cardLink"
+                    placeholder="Ссылка на картинку" 
+                    minlength="2" 
+                    required>
+            <span id = "error-cardLink" class="popup__error" role="status" aria-live="polite"></span>
+            <button type class="button popup__button button_place" name="addButton" disabled>+</button>
         </form>
       </div>
     </div>
 
     <div class="popup popup_new-form">
       <div class="popup__content">
-        <img src="./images/close.svg" alt="" class="popup__close">
+        <img src="<%=require('./images/close.svg')%>" alt="" class="popup__close">
         <h3 class="popup__title">Редактировать профиль</h3>
         <form class="popup__form" name="edit">
-            <input type="text" name="user" class="popup__input popup__input_type_user"
-            placeholder="Имя" minlength="3" maxlength="30" required>
-            <span class="popup__error popup_user"></span>
-            <input type="text" name="job" class="popup__input popup__input_type_job" 
-            placeholder="О себе" minlength="3" maxlength="30" required>
-            <span class="popup__error popup_job"></span>
-            <button type class="button popup__button popup__button_save button_save">Сохранить</button>
+            <input type="text" 
+                  name="userName" 
+                  class="popup__input" 
+                  id = "userName"
+                  placeholder="Имя" 
+                  minlength="2" 
+                  maxlength="30" 
+                  required>
+            <span id = "error-userName" class="popup__error" role="status" aria-live="polite"></span>
+            <input type="text" 
+                  name="userAbout" 
+                  class="popup__input" 
+                  id = "userAbout"
+                  placeholder="О себе" 
+                  minlength="2" 
+                  maxlength="30" 
+                  required>
+            <span id="error-userAbout" class="popup__error" role="status" aria-live="polite"></span>
+            <button type class="button popup__button popup__button_type_save" name="editButton">Сохранить</button>
         </form>
       </div>
     </div>
 
-    <div class="popup popup_image">
-      <div class="popup__image">
-        <img src="./images/close.svg" alt="" class="popup__close">
-        <div class="">
-          <img alt="" class="mod">
-        </div>
+    <div class="popup">
+      <div class="popup__content">
+        <img src="<%=require('./images/close.svg')%>" alt="" class="popup__close">
+        <h3 class="popup__title">Обновить аватар</h3>
+        <form class="popup__form" name="avatar">
+          <input type="url" 
+                 id="avatarLink"
+                 name="link" 
+                 class="popup__input"
+                 placeholder="Ссылка на картинку" 
+                 required>
+          <span id="error-avatarLink" class="popup__error" role="status" aria-live="polite"></span>
+          <button class="button popup__button popup__button_type_save popup__button_disabled" name="saveButton">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup">
+      <div class="popup__picture">
+        <img src="<%=require('./images/close.svg')%>" alt="" class="popup__close">
+        <img src="" alt="" class="popup__image">
       </div>
     </div>
      
   </div>
-  <!-- <script src="./js/Api.js"></script>
-  <script src="./js/functions.js"></script>  
-  <script src="./js/Card.js"></script>
-  <script src="./js/CardList.js"></script>
-  <script src="./js/Popup.js"></script>
-  <script src="./js/PopupForm.js"></script>
-  <script src="./js/PopupFormEdit.js"></script>
-  <script src="./js/PopupFormPlace.js"></script>
-  <script src="./js/PopupImage.js"></script>  -->
-  <script src="./code.js"></script>
+  <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
 </body>
 </html>

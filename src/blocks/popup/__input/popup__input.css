@@ -13,3 +13,8 @@
 .popup__input:last-of-type {
   margin-bottom: 0;
 }
+
+.popup__input_invalid {
+  border: 1px solid rgb(238, 55, 55);
+  box-shadow: 0px 4px 10px rgba(238, 55, 55, 0.25);
+}
